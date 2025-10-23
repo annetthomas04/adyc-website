@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مستقبلي - خطط مستقبلك بثقة ووضوح</title>
+    <meta name="description" content="منصة ذكية تساعد الشباب الإماراتي على التخطيط للمسار المهني والأسري والمالي بطريقة تحترم قيمنا وتقاليدنا" />
+    <meta name="author" content="مستقبلي" />
+    <meta name="keywords" content="التخطيط المهني, التخطيط المالي, التخطيط الأسري, الشباب الإماراتي, الذكاء الاصطناعي, المنح, الإرشاد" />
+
+    <meta property="og:title" content="مستقبلي - خطط مستقبلك بثقة ووضوح" />
+    <meta property="og:description" content="منصة ذكية تساعد الشباب الإماراتي على التخطيط للمسار المهني والأسري والمالي" />
+    <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.svg" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="/og-image.svg" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+<!-- زر فتح الـ chatbot -->
+<button onclick="openChatbot()" class="chat-button">
+  💬 تحدث معنا
+</button>
+
+<!-- نافذة الـ chatbot المنبثقة -->
+<div id="chatbotModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeChatbot()">&times;</span>
+    <iframe 
+      src="https://adyc-with-backend-production.up.railway.app/" 
+      class="chatbot-iframe"
+      frameborder="0">
+    </iframe>
+  </div>
+</div>
+
+<style>
+  /* زر الشات */
+  .chat-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    
+    background: linear-gradient(135deg, #2d5f4f 0%, #3d7a62 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(45, 95, 79, 0.3);
+    transition: all 0.3s ease;
+    font-family: 'Cairo', sans-serif;
+    
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    bottom: 50px;
+    left: 15px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .chat-button:hover {
+    background: linear-gradient(135deg, #3d7a62 0%, #4d8a72 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 95, 79, 0.4);
+  }
+  
+  /* النافذة المنبثقة */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .modal-content {
+ position: relative;
+  background-color: white;
+  margin: 2% auto; /* تصغير الهامش من 5% لـ 2% */
+  padding: 0;
+  border-radius: 15px;
+  width: 100%; /* زيادة العرض من 90% لـ 95% */
+  max-width: 900px; /* زيادة العرض الأقصى من 500px لـ 900px */
+  height: 92vh; /* زيادة الارتفاع من 80vh لـ 92vh */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+  overflow: hidden;
+  }
+  
+  /* زر الإغلاق */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #666;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+    background: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  
+  .close-button:hover {
+    color: #2d5f4f;
+  }
+  
+  /* الـ iframe */
+  .chatbot-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  /* الأنيميشن */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to { 
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* للموبايل */
+  @media (max-width: 768px) {
+    .modal-content {
+      width: 95%;
+      height: 90vh;
+      margin: 2.5% auto;
+    }
+    
+    .chat-button {
+      bottom: 15px;
+      left: 15px;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  // فتح الـ chatbot
+  function openChatbot() {
+    document.getElementById('chatbotModal').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // منع التمرير
+  }
+  
+  // إغلاق الـ chatbot
+  function closeChatbot() {
+    document.getElementById('chatbotModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // السماح بالتمرير
+  }
+  
+  // إغلاق عند الضغط خارج النافذة
+  window.onclick = function(event) {
+    const modal = document.getElementById('chatbotModal');
+    if (event.target === modal) {
+      closeChatbot();
+    }
+  }
+  
+  // إغلاق عند الضغط على Escape
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeChatbot();
+    }
+  });
+</script>
+
+
+
+  </body>
+
+
+  
+</html>
