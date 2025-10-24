@@ -63,7 +63,7 @@ Open the printed local URL (usually `http://localhost:5173`) to view the site.
 
 ## Assets
 
-Images are stored in `src/assets/` and imported into components. The hero image used by the `Hero` component is `src/assets/hero.png`. If you replace images, keep filenames or update imports accordingly.
+Images are stored in `src/assets/` and imported into components. If you replace images, keep filenames or update imports accordingly.
 
 ## Deployment
 
@@ -83,10 +83,6 @@ npm run build
 
 - If imports fail, ensure `@/` path alias is configured in your editor and TypeScript/Vite setup.
 - If assets are missing, check `src/assets/` for the expected filenames (e.g. `hero.png`).
-
-## Want more?
-
-- I can expand this README with per-component usage examples, a CONTRIBUTING guide, or deployment notes for specific hosts. Tell me which sections to expand and I'll add them.
 
 ## License
 
